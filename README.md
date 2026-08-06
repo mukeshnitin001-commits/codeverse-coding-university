@@ -12,9 +12,6 @@ A coding-learning web app with roles:
 - **User** (student): lessons, progress tracking, explain-my-code, two-styles
 - **Admin**: everything above + full user & content management
 
-## Default admin login
-- Username: `admin`
-- Password: `admin123`
 
 ## Setup (local)
 ```bash
