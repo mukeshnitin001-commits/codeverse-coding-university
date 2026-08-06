@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}CodeVerse - Learn Python Step by Step{% endblock %}
+{% block content %}
+<div class="card" style="text-align:center;padding:50px 30px;">
+  <h1 style="font-size:2.5rem;">Learn Python <span style="background:linear-gradient(135deg,#6c5ce7,#00cec9);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Step by Step</span></h1>
+  <p style="max-width:560px;margin:16px auto 24px;">A friendly coding school. Follow guided lessons, paste any code to get a line-by-line explanation, and see two different styles of writing the same solution.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:20px;">
+    <a class="btn" href="{{ url_for('register') }}">Get Started Free</a>
+    <a class="btn btn-outline" href="{{ url_for('login') }}">Log In</a>
+  </div>
+</div>
+<div class="grid2">
+  <div class="card" style="min-height:150px;">
+    <h2>🎓 Guided Lessons</h2>
+    <p>Work through step-by-step Python lessons, from Hello World to functions. Mark them complete as you learn.</p>
+  </div>
+  <div class="card" style="min-height:150px;">
+    <h2>🧠 Explain My Code</h2>
+    <p>Paste any code snippet and get an AI-powered, friendly line-by-line walkthrough of what each part does.</p>
+  </div>
+  <div class="card" style="min-height:150px;">
+    <h2>🔁 Two Styles</h2>
+    <p>See two different ways to write the same code — for example, a loop vs. a list comprehension — and build flexibility.</p>
+  </div>
+  <div class="card" style="min-height:150px;">
+    <h2>🛡️ Admin Panel</h2>
+    <p>Admins get full control: manage users, lessons, roles, and see platform-wide stats.</p>
+  </div>
+</div>
+{% endblock %}
