@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Explain My Code - CodeVerse{% endblock %}
+{% block content %}
+<h1>🧠 Explain My Code</h1>
+<p class="muted">Paste any code below and get a friendly, step-by-step explanation of what each line does — powered by a free AI tutor.</p>
+
+<div class="card" style="margin-top:16px;">
+  <form method="post">
+    <label>Your code</label>
+    <textarea name="code" placeholder='print("Hello, World!")&#10;for i in range(5):&#10;    print(i)' required>{{ code if code else '' }}</textarea>
+    <label>Language</label>
+    <select name="lang" style="width:200px;">
+      <option value="python" {% if not code %}selected{% endif %}>Python</option>
+      <option value="javascript">JavaScript</option>
+      <option value="java">Java</option>
+    </select>
+    <div>
+      <button class="btn" type="submit">Explain It 🚀</button>
+    </div>
+  </form>
+</div>
+
+{% if explanation %}
+<div class="card">
+  <h2>📖 Explanation</h2>
+  <div style="line-height:1.7;color:#c7cbe0;white-space:pre-wrap;">{{ explanation }}</div>
+</div>
+{% endif %}
+{% endblock %}
