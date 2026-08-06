@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Two Styles - CodeVerse{% endblock %}
+{% block content %}
+<h1>🔁 Two Styles of Writing Code</h1>
+<p class="muted">Describe a small task and see two different approaches to solve it. Also check the <a href="{{ url_for('dashboard') }}" style="color:#00cec9;">lessons</a> which include built-in two-style examples.</p>
+
+<div class="card" style="margin-top:16px;">
+  <form method="post">
+    <label>Describe a task</label>
+    <textarea name="prompt" placeholder="e.g. Add up all even numbers from 1 to 10" required>{{ prompt if prompt else '' }}</textarea>
+    <div>
+      <button class="btn" type="submit">Show Two Styles 🎨</button>
+    </div>
+  </form>
+</div>
+
+{% if result %}
+<div class="card">
+  <h2>✨ Result</h2>
+  <div style="line-height:1.7;color:#c7cbe0;white-space:pre-wrap;">{{ result }}</div>
+</div>
+{% endif %}
+{% endblock %}
