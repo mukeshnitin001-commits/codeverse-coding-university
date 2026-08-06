@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Manage Lessons - Admin{% endblock %}
+{% block content %}
+<h1>📚 Manage Lessons</h1>
+<p class="muted">Create, edit, and delete coding lessons. You have full admin rights.</p>
+<div class="row" style="margin:16px 0;">
+  <a class="btn" href="{{ url_for('admin_lesson_new') }}">+ New Lesson</a>
+</div>
+<div class="card">
+  <table>
+    <tr><th>#</th><th>Title</th><th>Two Styles</th><th>Actions</th></tr>
+    {% for l in lessons %}
+    <tr>
+      <td>{{ l['order_index'] }}</td>
+      <td>{{ l['title'] }}</td>
+      <td>{% if l['two_styles_enabled'] %}✅ yes{% else %}—{% endif %}</td>
+      <td>
+        <a class="btn btn-sm btn-outline" href="{{ url_for('admin_lesson_edit', lid=l['id']) }}">Edit</a>
+        <form method="post" action="{{ url_for('admin_lesson_delete', lid=l['id']) }}" style="display:inline;" onsubmit="return confirm('Delete this lesson?');">
+          <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}
