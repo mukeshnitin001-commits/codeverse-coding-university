@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ lesson['title'] }}{% endblock %}
+{% block content %}
+<a href="{{ url_for('dashboard') }}" style="color:#00cec9;text-decoration:none;">← Back to dashboard</a>
+<div class="card" style="margin-top:16px;">
+  <h1>{{ lesson['title'] }}</h1>
+  <div style="line-height:1.7;color:var(--effort,#c7cbe0);">{{ lesson['content'] | replace('\n','<br>') | safe }}</div>
+</div>
+
+{% if lesson['example_code'] %}
+<div class="card">
+  <h2>💻 Example Code</h2>
+  <pre><code>{{ lesson['example_code'] }}</code></pre>
+  <p class="muted" style="margin-top:10px;">💡 Tip: Paste this into <a href="{{ url_for('explain') }}" style="color:#00cec9;">Explain My Code</a> to see it broken down line by line.</p>
+</div>
+{% endif %}
+
+{% if lesson['two_styles_enabled'] %}
+<div class="grid2">
+  <div class="card">
+    <h2>Style A</h2>
+    <pre><code>{{ lesson['style1'] }}</code></pre>
+  </div>
+  <div class="card">
+    <h2>Style B</h2>
+    <pre><code>{{ lesson['style2'] }}</code></pre>
+  </div>
+</div>
+<div class="card" style="background:#151826;">
+  <p class="muted">✨ Notice how <strong style="color:#fff;">Style A</strong> and <strong style="color:#fff;">Style B</strong> solve the same problem differently. There's rarely just one "right" way in programming — learning multiple styles builds flexibility.</p>
+</div>
+{% endif %}
+
+<form method="post" action="{{ url_for('complete_lesson', lid=lesson['id']) }}">
+  {% if done %}
+    <button class="btn btn-outline" type="submit" disabled>✓ Completed</button>
+  {% else %}
+    <button class="btn" type="submit">Mark as Complete ✓</button>
+  {% endif %}
+</form>
+{% endblock %}
