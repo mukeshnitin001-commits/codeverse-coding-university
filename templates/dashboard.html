@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - CodeVerse{% endblock %}
+{% block content %}
+<h1>👋 Hi, {{ user['username'] }}</h1>
+<p class="muted">Your learning dashboard. Progress: <strong style="color:#00cec9;">{{ completed }}/{{ total }}</strong> lessons completed.</p>
+
+<div class="grid2" style="margin:20px 0;">
+  <div class="stat"><div class="num">{{ completed }}</div><div class="lbl">Lessons Completed</div></div>
+  <div class="stat"><div class="num">{{ total }}</div><div class="lbl">Total Lessons</div></div>
+</div>
+
+<div class="card">
+  <h2>📚 Your Lessons</h2>
+  {% for l in lessons %}
+    <div class="row" style="padding:12px 0;border-bottom:1px solid #23283a;">
+      <div style="flex:1;">
+        <strong>{{ loop.index }}. {{ l['title'] }}</strong>
+        {% if l['two_styles_enabled'] %}<span class="badge user" style="margin-left:8px;">two styles</span>{% endif %}
+        {% if l['done'] %}<span class="badge done" style="margin-left:4px;">✓ done</span>{% endif %}
+      </div>
+      <a class="btn btn-sm btn-outline" href="{{ url_for('lesson', lid=l['id']) }}">Open</a>
+    </div>
+  {% else %}
+    <p class="muted">No lessons yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}
