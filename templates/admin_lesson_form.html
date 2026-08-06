@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit' if lesson else 'New' }} Lesson - Admin{% endblock %}
+{% block content %}
+<h1>{{ '✏️ Edit Lesson' if lesson else '➕ New Lesson' }}</h1>
+<div class="card" style="margin-top:16px;">
+  <form method="post">
+    <label>Title</label>
+    <input type="text" name="title" required value="{{ lesson['title'] if lesson else '' }}">
+    <label>Content (markdown-ish, newlines become breaks)</label>
+    <textarea name="content" required rows="6">{{ lesson['content'] if lesson else '' }}</textarea>
+    <label>Example code</label>
+    <textarea name="example_code" rows="8">{{ lesson['example_code'] if lesson else '' }}</textarea>
+    <label>Order index</label>
+    <input type="number" name="order_index" value="{{ lesson['order_index'] if lesson else '0' }}" style="width:120px;">
+    <label style="display:flex;align-items:center;gap:10px;margin:8px 0;">
+      <input type="checkbox" name="two_styles" style="width:auto;" {% if lesson and lesson['two_styles_enabled'] %}checked{% endif %}>
+      Enable "Two Styles" for this lesson
+    </label>
+    <div class="grid2" style="margin:8px 0;">
+      <div>
+        <label>Style A code</label>
+        <textarea name="style1" rows="5">{{ lesson['style1'] if lesson else '' }}</textarea>
+      </div>
+      <div>
+        <label>Style B code</label>
+        <textarea name="style2" rows="5">{{ lesson['style2'] if lesson else '' }}</textarea>
+      </div>
+    </div>
+    <button class="btn" type="submit">Save Lesson</button>
+  </form>
+</div>
+{% endblock %}
